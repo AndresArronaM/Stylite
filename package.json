@@ -1,0 +1,24 @@
+{
+  "name": "@andresarronamontoya/stylite",
+  "version": "0.0.0-Alfa",
+  "description": "Libreria para el desarrollo de sitios web",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp start"
+  },
+  "author": "Andres Arrona Montoya",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "autoprefixer": "^9.8.6",
+    "browser-sync": "^2.26.12",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-watch": "^5.0.1",
+    "node-sass-tilde-importer": "^1.0.2"
+  }
+}
