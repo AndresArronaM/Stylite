@@ -30,7 +30,7 @@
 
 @mixin orden($core,$orden){
     @if $core == css{
-        .Wrap-#{$wrap}{
+        .Orden-#{$wrap}{
             flex-wrap:$wrap;
         }
     }@else{

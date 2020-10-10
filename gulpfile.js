@@ -1,3 +1,4 @@
+const fs            = require('fs')                         ;
 const Server        = require('browser-sync')               ;
 const Gulp          = require('gulp')                       ;
 const Sass          = require('gulp-sass')                  ;
@@ -9,6 +10,9 @@ const Postcss       = require('gulp-postcss')               ;
 const Rename        = require('gulp-rename')                ;
 const Sourcemaps    = require('gulp-sourcemaps')            ;
 const Watch         = require('gulp-watch')                 ;
+const jsonSass      = require('json-sass')                  ;
+const Source        = require('vinyl-source-stream')        ;
+
 
 const serverOptions = {
     watch:true,
@@ -63,7 +67,17 @@ Gulp.task('Build', ()=>{
         .pipe(Server.stream(reloadFiles))
 });
 
-Gulp.task('default', Gulp.parallel('Server', 'Dev', (cb)=>{
+Gulp.task('jsonToSass', ()=>{
+    return fs.createReadStream('config.json')
+        .pipe(jsonSass({
+            prefix:'$config: ',
+        }))
+        .pipe(Source('config.json'))
+        .pipe(Rename('config.scss'))
+        .pipe(Gulp.dest('./scss'))
+});
+
+Gulp.task('default', Gulp.parallel('Server','jsonToSass','Dev', (cb)=>{
     Gulp.watch('index.html').on('change', Server.reload);
     Watch('./**/*.scss',Gulp.series('Dev')).on('change', Server.reload);
     cb();
