@@ -75,10 +75,12 @@ Gulp.task('jsonToSass', ()=>{
         .pipe(Source('config.json'))
         .pipe(Rename('config.scss'))
         .pipe(Gulp.dest('./scss'))
+        .pipe(Server.stream(reloadFiles))
 });
 
 Gulp.task('default', Gulp.parallel('Server','jsonToSass','Dev', (cb)=>{
     Gulp.watch('index.html').on('change', Server.reload);
+    Gulp.watch('config.json').on('change', Server.reload);
     Watch('./**/*.scss',Gulp.series('Dev')).on('change', Server.reload);
     cb();
 }));

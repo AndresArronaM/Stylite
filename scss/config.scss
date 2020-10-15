@@ -1,10 +1,38 @@
 $config: (
+  MediaQuery: (
+    xs: 480px,
+    s: 640px,
+    m: 960px,
+    lg: 1024px,
+    xl: 1200px
+  ),
   flexbox: (
     direction: (
       r: row,
       c: colunm,
       rr: row-reverse,
       cr: column-reverse
+    ),
+    wrap: (
+      w: wrap,
+      wr: wrap-reverse,
+      nw: nowrap
+    ),
+    orden: (
+      start: 0,
+      end: 9
+    ),
+    grow: (
+      start: 0,
+      end: 9
+    ),
+    basis: (
+      start: 0,
+      end: 9
+    ),
+    shrink: (
+      start: 0,
+      end: 9
     )
   )
 );

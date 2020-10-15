@@ -1,4 +1,11 @@
 {
+    "MediaQuery":{
+        "xs":"480px",
+        "s":"640px",
+        "m":"960px",
+        "lg":"1024px",
+        "xl":"1200px"
+    },
     "flexbox":{
         "direction":{
             "r":"row",
