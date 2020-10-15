@@ -1,0 +1,11 @@
+$core:css;
+
+@import "scss/config.scss";
+@import "scss/Api/api.scss";
+
+$direction:map-deep-get($config,"flexbox","direction","r");
+@import "scss/Flexbox/Flexbox.scss";
+
+:root{
+    --direction:#{$direction};
+}

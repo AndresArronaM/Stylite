@@ -1,0 +1,31 @@
+{
+    "flexbox":{
+        "direction":{
+            "r":"row",
+            "c":"colunm",
+            "rr":"row-reverse",
+            "cr":"column-reverse"
+        },
+        "wrap":{
+            "w":"wrap",
+            "wr":"wrap-reverse",
+            "nw":"nowrap"
+        },
+        "orden":{
+            "start":"0",
+            "end":"9"
+        },
+        "grow":{
+            "start":"0",
+            "end":"9"
+        },
+        "basis":{
+            "start":"0",
+            "end":"9"
+        },
+        "shrink":{
+            "start":"0",
+            "end":"9"
+        }
+    }
+}
