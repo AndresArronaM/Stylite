@@ -3,9 +3,22 @@ $core:css;
 @import "scss/config.scss";
 @import "scss/Api/api.scss";
 
-$direction:map-deep-get($config,"flexbox","direction","r");
+@import "scss/MediaQuery/MediaQuery.scss";
 @import "scss/Flexbox/Flexbox.scss";
 
-:root{
-    --direction:#{$direction};
+$flexbox:get-value($config, "flexbox");
+$mq:get-value($config, "MediaQuery");
+
+@include MediaQuery(s){
+    .dev{
+        @include flexbox();
+        @include direction(row);
+        @include wrap(nowrap);
+        @include orden(1);
+        @include grow(1);
+        @include basis(1);
+        @include shrink(1);
+    }
 }
+
+@include UtilitiesFlexbox($mq,$flexbox,$core);

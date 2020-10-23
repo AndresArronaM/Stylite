@@ -1,69 +1,91 @@
-@mixin flexbox($core){
-    @if $core == css{
-        .Display-Flex{
-            display:flex;
-        }
-    }@else{
-        display:flex;
-    }
+@mixin flexbox(){
+    display:flex;
 }
 
-@mixin directions($core,$direction){
-    @if $core == css{
-        .Direction-#{$direction}{
-            flex-direction:$direction;
-        }
-    }@else{
-        flex-direction:$direction;
-    }
+@mixin direction($valor){
+    flex-direction:$valor;
 }
 
-@mixin wrap($core,$wrap){
-    @if $core == css{
-        .Wrap-#{$wrap}{
-            flex-wrap:$wrap;
-        }
-    }@else{
-        flex-wrap:$wrap;
-    }
+@mixin wrap($valor){
+    flex-wrap:$valor;
 }
 
-@mixin orden($core,$orden){
-    @if $core == css{
-        .Orden-#{$wrap}{
-            flex-wrap:$wrap;
-        }
-    }@else{
-        flex-wrap:$wrap;
-    }
+@mixin orden($valor){
+    flex-wrap:$valor;
 }
 
-@mixin grow($core,$grow){
-    @if $core == css{
-        .Grow-#{$grow}{
-            flex-grow:$grow;
-        }
-    }@else{
-        flex-grow:$grow;
-    }
+@mixin grow($valor){
+    flex-grow:$valor;
 }
 
-@mixin basis($core,$basis){
-    @if $core == css{
-        .Basis-#{$basis}{
-            flex-basis:$basis;
-        }
-    }@else{
-        flex-basis:$basis;
-    }
+@mixin basis($valor){
+    flex-basis:$valor;
 }
 
-@mixin shrink($core,$shrink){
+@mixin shrink($valor){
+    flex-shrink:$valor;
+}
+
+@mixin UtilitiesFlexbox($mq,$propiedad,$core){
     @if $core == css{
-        .Shrink-#{$shrink}{
-            flex-shrink:$shrink;
+        @each $Breackpoint, $MediaQuery in $mq{
+            @media screen and (min-width:#{$MediaQuery}) {
+                @each $subselector, $subvalor in $propiedad {
+                    @if $subselector == direction {
+                        @each $selector, $valor in $subvalor {
+                            .#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                flex-direction:$valor;
+                            }
+                        }
+                    }@else if $subselector == wrap{
+                        @each $selector, $valor in $subvalor {
+                            .#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                flex-wrap:$valor;
+                            }
+                        }
+                    }@else if $subselector == orden{
+                        $start:get-value($config,"flexbox","orden","start");
+                        $end:get-value($config,"flexbox","orden","end") + 1;
+                        @each $selector, $valor in $subvalor {
+                            @for $i from $start to $end {
+                                .#{$subselector}-#{$i}-#{$Breackpoint}{
+                                    flex-wrap:$i;
+                                }
+                            }
+                        }
+                    }@else if $subselector == grow{
+                        $start:get-value($config,"flexbox","grow","start");
+                        $end:get-value($config,"flexbox","grow","end") + 1;
+                        @each $selector, $valor in $subvalor {
+                            @for $i from $start to $end {
+                                .#{$subselector}-#{$i}-#{$Breackpoint}{
+                                    flex-grow:$i;
+                                }
+                            }
+                        }
+                    }@else if $subselector == basis{
+                        $start:get-value($config,"flexbox","basis","start");
+                        $end:get-value($config,"flexbox","basis","end") + 1;
+                        @each $selector, $valor in $subvalor {
+                            @for $i from $start to $end {
+                                .#{$subselector}-#{$i}-#{$Breackpoint}{
+                                    flex-basis:$i;
+                                }
+                            }
+                        }
+                    }@else if $subselector == shrink{
+                        $start:get-value($config,"flexbox","shrink","start");
+                        $end:get-value($config,"flexbox","shrink","end") + 1;
+                        @each $selector, $valor in $subvalor {
+                            @for $i from $start to $end {
+                                .#{$subselector}-#{$i}-#{$Breackpoint}{
+                                    flex-shrink:$i;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-    }@else{
-        flex-shrink:$shrink;
     }
 }

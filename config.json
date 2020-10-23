@@ -9,7 +9,7 @@
     "flexbox":{
         "direction":{
             "r":"row",
-            "c":"colunm",
+            "c":"column",
             "rr":"row-reverse",
             "cr":"column-reverse"
         },
