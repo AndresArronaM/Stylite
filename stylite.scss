@@ -5,8 +5,10 @@ $core:css;
 
 @import "scss/MediaQuery/MediaQuery.scss";
 @import "scss/Flexbox/Flexbox.scss";
+@import "scss/Grid/Grid.scss";
 
 $flexbox:get-value($config, "flexbox");
+$grid:get-value($config, "grid");
 $mq:get-value($config, "MediaQuery");
 
 @include MediaQuery(s){
@@ -18,7 +20,18 @@ $mq:get-value($config, "MediaQuery");
         @include grow(1);
         @include basis(1);
         @include shrink(1);
+        @include grid();
+        @include template-columns(1);
+        @include template-rows(1);
+        @include auto-columns(auto);
+        @include auto-rows(auto);
+        @include auto-flow(auto);
+        @include column-start(1);
+        @include column-end(1);
+        @include row-start(1);
+        @include row-end(1);
     }
 }
 
 @include UtilitiesFlexbox($mq,$flexbox,$core);
+@include UtilitiesGrid($mq,$grid,$core);

@@ -34,5 +34,36 @@
             "start":"0",
             "end":"9"
         }
+    },
+    "grid":{
+        "template":{
+            "columns":{
+                "valor":"12",
+                "width":"1fr"
+            },
+            "row":{
+                "valor":"12",
+                "height":"1fr"
+            }
+        },
+        "auto":{
+            "columns":"auto",
+            "flow":{
+                "r":"row",
+                "c":"column",
+                "d":"dense",
+                "rd":"row dense",
+                "cd":"column dense"
+            },
+            "rows":"auto"
+        },
+        "column":{
+            "start":"1",
+            "end":"12"
+        },
+        "row":{
+            "start":"1",
+            "end":"12"
+        }
     }
 }

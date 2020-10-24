@@ -1,0 +1,125 @@
+@mixin grid(){
+    display:grid;
+}
+
+@mixin template-columns($valor){
+    grid-template-columns:$valor;
+}
+
+@mixin template-rows($valor){
+    grid-template-rows:$valor;
+}
+
+@mixin auto-columns($valor){
+    grid-auto-columns:$valor;
+}
+
+@mixin auto-rows($valor){
+    grid-auto-rows:$valor;
+}
+
+@mixin auto-flow($valor){
+    grid-auto-flow:$valor;
+}
+
+@mixin column-start($valor){
+    grid-column-start:$valor;
+}
+
+@mixin column-end($valor){
+    grid-column-end:$valor;
+}
+
+@mixin row-start($valor){
+    grid-row-start:$valor;
+}
+
+@mixin row-end($valor){
+    grid-row-end:$valor;
+}
+
+@mixin UtilitiesGrid($mq,$propiedad,$core){
+    @if $core == css{
+        @each $Breackpoint, $MediaQuery in $mq{
+            @media screen and (min-width:#{$MediaQuery}) {
+                @each $subsubselector, $subsubvalor in $propiedad{
+                    @if $subsubselector == template {
+                        @each $subselector, $subvalor in $subsubvalor{
+                            $valueColumns:get-value($config,"grid","template","columns","valor");
+                            $columns:get-value($config,"grid","template","columns","width");
+                            $valueRow:get-value($config,"grid","template","row","valor");
+                            $row:get-value($config,"grid","template","row","width");
+                            @if $subselector == columns{
+                                @each $selector, $valor in $subvalor {
+                                    @if $valor == 12{
+                                        .#{$subsubselector}-#{$subselector}-#{$valor}-#{$Breackpoint}{
+                                            grid-template-columns:repeat($valueColumns, $columns);
+                                        }
+                                    }
+                                }
+                            }@else{
+                                @each $selector, $valor in $subvalor {
+                                    @if $valor == 12{
+                                        .#{$subsubselector}-#{$subselector}-#{$valor}-#{$Breackpoint}{
+                                            grid-template-rows:repeat($valueColumns, $columns);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }@else if $subsubselector == auto{
+                        @each $subselector, $subvalor in $subsubvalor{
+                            @if $subselector == flow{
+                                @each $selector, $valor in $subvalor {
+                                    .#{$subsubselector}-#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                        grid-auto-flow:$valor;
+                                    }
+                                }
+                            }@else if $subselector == columns{
+                                .#{$subsubselector}-#{$subselector}-#{$Breackpoint}{
+                                    grid-auto-columns:$subvalor;
+                                }
+                            }@else{
+                                .#{$subsubselector}-#{$subselector}-#{$Breackpoint}{
+                                    grid-auto-rows:$subvalor;
+                                }
+                            }
+                        }
+                    }@else if $subsubselector == column{
+                        @each $subselector, $subvalor in $subsubvalor{
+                            $columnStart:get-value($config,"grid","column","start");
+                            $columnEnd:get-value($config,"grid","column","end");
+                            @for $i from $columnStart to $columnEnd {
+                                @if $subselector == start{
+                                    .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                        grid-column-start:$i;
+                                    }
+                                }@else{
+                                    .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                        grid-column-end:$i;
+                                    }
+                                }   
+                            }
+                        }
+                    }@else if $subsubselector == row{
+                        @each $subselector, $subvalor in $subsubvalor{
+                            $rowStart:get-value($config,"grid","row","start");
+                            $rowEnd:get-value($config,"grid","row","end");
+                            @for $i from $rowStart to $rowEnd {
+                                @if $subselector == start{
+                                    .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                        grid-row-start:$i;
+                                    }
+                                }@else{
+                                    .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                        grid-row-end:$i;
+                                    }
+                                }  
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
