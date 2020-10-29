@@ -1,0 +1,137 @@
+@mixin height($valor){
+    height:$valor;
+}
+
+@mixin width($valor){
+    width:$valor;
+}
+
+@mixin margin-bottom($valor){
+    margin-bottom:$valor;
+}
+
+@mixin margin-top($valor){
+    margin-top:$valor;
+}
+
+@mixin margin-left($valor){
+    margin-left:$valor;
+}
+
+@mixin margin-right($valor){
+    margin-right:$valor;
+}
+
+@mixin padding-bottom($valor){
+    padding-bottom:$valor;
+}
+
+@mixin padding-top($valor){
+padding-top:$valor;
+}
+
+@mixin padding-left($valor){
+    padding-left:$valor;
+}
+
+@mixin padding-right($valor){
+    padding-right:$valor;
+}
+
+@mixin visibility($valor){
+    visibility:$valor;
+}
+
+@mixin UtilitiesBoxModel($mq,$propiedad,$core){
+    @if $core == css{
+        @each $Breackpoint, $MediaQuery in $mq{
+            @media screen and (min-width:#{$MediaQuery}){
+                @each $subsubselector, $subsubvalor in $propiedad {
+                    @if $subsubselector == content{
+                        @each $subselector, $subvalor in $subsubvalor{
+                            $hs:get-value($config,"boxmodel","content","height","start");
+                            $he:get-value($config,"boxmodel","content","height","end")+1;
+                            $ws:get-value($config,"boxmodel","content","width","start");
+                            $we:get-value($config,"boxmodel","content","width","end")+1;
+                            @if $subselector == height{
+                                @for $i from $hs to $he{
+                                    .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                        height:$i;
+                                    }
+                                }
+                            }@else if $subselector == width{
+                                @for $i from $ws to $we{
+                                    .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                        width:$i;
+                                    }
+                                }
+                            }
+                        }
+                    }@else if $subsubselector == margin{
+                        @each $subselector, $subvalor in $subsubvalor{
+                            $ms:get-value($config,"boxmodel","margin","valores","start");
+                            $me:get-value($config,"boxmodel","margin","valores","end")+1;
+                            @if $subselector == rtl{
+                                @each $selector,$valor in $subvalor{
+                                    @for $i from $ms to $me{
+                                        @if $selector == bottom{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                margin-bottom:$i;
+                                            }
+                                        }@else if $selector == top{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                margin-top:$i;
+                                            }
+                                        }@else if $selector == left{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                margin-left:$i;
+                                            }
+                                        }@else{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                margin-right:$i;
+                                            }
+                                        }
+                                    }
+                                }                              
+                            }
+                        }
+                    }@else if $subsubselector == padding{
+                        @each $subselector, $subvalor in $subsubvalor{
+                            $ps:get-value($config,"boxmodel","padding","valores","start");
+                            $pe:get-value($config,"boxmodel","padding","valores","end")+1;
+                            @if $subselector == rtl{
+                                @each $selector,$valor in $subvalor{
+                                    @for $i from $ps to $pe{
+                                        @if $selector == bottom{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                padding-bottom:$i;
+                                            }
+                                        }@else if $selector == top{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                padding-top:$i;
+                                            }
+                                        }@else if $selector == left{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                padding-left:$i;
+                                            }
+                                        }@else{
+                                            .#{$subsubselector}-#{$selector}-#{$i}-#{$Breackpoint}{
+                                                padding-right:$i;
+                                            }
+                                        }
+                                    }
+                                }                              
+                            }
+                        }
+                    }@else if $subsubselector == visibility{
+                        @each $subselector, $subvalor in $subsubvalor{
+                            .#{$subsubselector}-#{$subvalor}-#{$Breackpoint}{
+                                visibility:$subvalor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

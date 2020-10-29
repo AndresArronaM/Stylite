@@ -136,5 +136,46 @@ $config: (
         end: 12fr
       )
     )
+  ),
+  boxmodel: (
+    content: (
+      height: (
+        start: 0rem,
+        end: 100rem
+      ),
+      width: (
+        start: 0rem,
+        end: 100rem
+      )
+    ),
+    margin: (
+      rtl: (
+        bottom: bottom,
+        top: top,
+        left: left,
+        right: right
+      ),
+      valores: (
+        start: 0rem,
+        end: 100rem
+      )
+    ),
+    padding: (
+      rtl: (
+        bottom: bottom,
+        top: top,
+        left: left,
+        right: right
+      ),
+      valores: (
+        start: 0rem,
+        end: 100rem
+      )
+    ),
+    visibility: (
+      v: visible,
+      h: hidden,
+      c: collapse
+    )
   )
 );

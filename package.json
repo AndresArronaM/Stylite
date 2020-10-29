@@ -1,6 +1,6 @@
 {
   "name": "@andresarronamontoya/stylite",
-  "version": "0.6.0-Alfa",
+  "version": "0.7.0-Alfa",
   "description": "Libreria para el desarrollo de sitios web",
   "main": "gulpfile.js",
   "scripts": {

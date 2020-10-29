@@ -7,11 +7,15 @@ $core:css;
 @import "scss/Flexbox/Flexbox.scss";
 @import "scss/Grid/Grid.scss";
 @import "scss/Align/Align.scss";
+@import "scss/Box-Model/BoxModel.scss";
 
 $flexbox:get-value($config, "flexbox");
 $grid:get-value($config, "grid");
 $align:get-value($config,"boxalign");
+$bm:get-value($config,"boxmodel");
 $mq:get-value($config, "MediaQuery");
+$unidad:"%";
+$valor:1;
 
 @include MediaQuery(s){
     .dev{
@@ -40,9 +44,21 @@ $mq:get-value($config, "MediaQuery");
         @include justify-self(center);
         @include column-gap(1fr);
         @include row-gap(1fr);
+        @include height(1%);
+        @include width(1%);
+        @include margin-bottom(1%);
+        @include margin-top(1%);
+        @include margin-left(1%);
+        @include margin-right(1%);
+        @include padding-bottom(1%);
+        @include padding-top(1%);
+        @include padding-left(1%);
+        @include padding-right(1%);
+        @include visibility(hidden);
     }
 }
 
 @include UtilitiesFlexbox($mq,$flexbox,$core);
 @include UtilitiesGrid($mq,$grid,$core);
 @include UtilitiesAlign($mq,$align,$core);
+@include UtilitiesBoxModel($mq,$bm,$core);
