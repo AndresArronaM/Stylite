@@ -6,9 +6,11 @@ $core:css;
 @import "scss/MediaQuery/MediaQuery.scss";
 @import "scss/Flexbox/Flexbox.scss";
 @import "scss/Grid/Grid.scss";
+@import "scss/Align/Align.scss";
 
 $flexbox:get-value($config, "flexbox");
 $grid:get-value($config, "grid");
+$align:get-value($config,"boxalign");
 $mq:get-value($config, "MediaQuery");
 
 @include MediaQuery(s){
@@ -30,8 +32,17 @@ $mq:get-value($config, "MediaQuery");
         @include column-end(1);
         @include row-start(1);
         @include row-end(1);
+        @include align-content(center);
+        @include align-items(center);
+        @include align-self(center);
+        @include justify-content(center);
+        @include justify-items(center);
+        @include justify-self(center);
+        @include column-gap(1fr);
+        @include row-gap(1fr);
     }
 }
 
 @include UtilitiesFlexbox($mq,$flexbox,$core);
 @include UtilitiesGrid($mq,$grid,$core);
+@include UtilitiesAlign($mq,$align,$core);

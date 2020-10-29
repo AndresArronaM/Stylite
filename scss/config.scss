@@ -59,11 +59,82 @@ $config: (
     ),
     column: (
       start: 1,
-      end: 13
+      end: 12
     ),
     row: (
       start: 1,
-      end: 13
+      end: 12
+    )
+  ),
+  boxalign: (
+    align: (
+      content: (
+        fs: flex-start,
+        fe: flex-end,
+        c: center,
+        s: start,
+        e: end,
+        st: stretch,
+        sb: space-between,
+        sa: space-around,
+        se: space-evenly
+      ),
+      items: (
+        st: stretch,
+        fs: flex-start,
+        fe: flex-end,
+        s: start,
+        e: end,
+        ss: self-start,
+        se: self-end,
+        c: center,
+        b: baseline
+      ),
+      self: (
+        a: auto,
+        fs: flex-start,
+        fe: flex-end,
+        c: center,
+        b: baseline,
+        st: stretch,
+        s: start,
+        e: end
+      )
+    ),
+    justify: (
+      content: (
+        fs: flex-start,
+        fe: flex-end,
+        c: center,
+        sb: space-between,
+        sa: space-around,
+        se: space-evenly,
+        s: start,
+        e: end,
+        st: stretch
+      ),
+      items: (
+        st: stretch,
+        s: start,
+        e: end,
+        c: center
+      ),
+      self: (
+        c: center,
+        st: stretch,
+        s: start,
+        e: end
+      )
+    ),
+    gap: (
+      column: (
+        start: 1fr,
+        end: 12fr
+      ),
+      row: (
+        start: 1fr,
+        end: 12fr
+      )
     )
   )
 );

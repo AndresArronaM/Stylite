@@ -1,0 +1,115 @@
+@mixin align-content($valor){
+    align-content:$valor;
+}
+
+@mixin align-items($valor){
+    align-items:$valor;
+}
+
+@mixin align-self($valor){
+    align-self:$valor;
+}
+
+@mixin justify-content($valor){
+    justify-content:$valor;
+}
+
+@mixin justify-items($valor){
+    justify-items:$valor;
+}
+
+@mixin justify-self($valor){
+    justify-self:$valor;
+}
+
+@mixin column-gap($valor){
+    column-gap:$valor;
+}
+
+@mixin row-gap($valor){
+    row-gap:$valor;
+}
+
+@mixin UtilitiesAlign($mq,$propiedad,$core){
+    @if $core == css{
+        @each $Breackpoint, $MediaQuery in $mq{
+            @media screen and (min-width:#{$MediaQuery}){
+                @each $subsubselector,$subsubvalor in $propiedad {
+                    @if $subsubselector == align{
+                        @each $subselector,$subvalor in $subsubvalor{
+                            @if $subselector == content{
+                                @each $selector,$valor in $subvalor{
+                                    .#{$subsubselector}-#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                        align-content:$valor;
+                                    }
+                                }
+                            }@else if $subselector == items{
+                                @each $selector,$valor in $subvalor{
+                                    .#{$subsubselector}-#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                        align-items:$valor;
+                                    }
+                                }
+                            }@else if $subselector == self{
+                                @each $selector,$valor in $subvalor{
+                                    .#{$subsubselector}-#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                        align-self:$valor;
+                                    }
+                                }
+                            }
+                        }
+                    }@else if $subsubselector == justify{
+                        @each $subselector,$subvalor in $subsubvalor{
+                            @if $subselector == content{
+                                @each $selector,$valor in $subvalor{
+                                    .#{$subsubselector}-#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                        justify-content:$valor;
+                                    }
+                                }
+                            }@else if $subselector == items{
+                                @each $selector,$valor in $subvalor{
+                                    .#{$subsubselector}-#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                        justify-items:$valor;
+                                    }
+                                }
+                            }@else if $subselector == self{
+                                @each $selector,$valor in $subvalor{
+                                    .#{$subsubselector}-#{$subselector}-#{$selector}-#{$Breackpoint}{
+                                        justify-self:$valor;
+                                    }
+                                }
+                            }
+                        }
+                    }@else if $subsubselector == gap{
+                        @each $subselector,$subvalor in $subsubvalor{
+                            $gcs:get-value($config,"boxalign","gap","column","start");
+                            $gce:get-value($config,"boxalign","gap","column","end")+1;
+                            $grs:get-value($config,"boxalign","gap","row","start");
+                            $gre:get-value($config,"boxalign","gap","row","end")+1;
+                            @if $subselector == column{
+                                @each $selector,$valor in $subvalor {
+                                    @for $i from $gcs to $gce {
+                                        @if $selector == start{
+                                            .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                                column-gap:$i;
+                                            }
+                                        }  
+                                    }
+                                }
+                            }@else if $subselector == row{
+                                @each $selector,$valor in $subvalor {
+                                    @for $i from $gcs to $gce {
+                                        @if $selector == start{
+                                            .#{$subsubselector}-#{$subselector}-#{$i}-#{$Breackpoint}{
+                                                row-gap:$i;
+                                            }
+                                        }  
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
